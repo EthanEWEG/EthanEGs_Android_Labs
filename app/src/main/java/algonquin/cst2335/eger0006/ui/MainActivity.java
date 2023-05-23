@@ -43,8 +43,7 @@ public class MainActivity extends AppCompatActivity {
             variableBinding.checkBox.setChecked(selected);
             variableBinding.switch1.setChecked(selected);
             variableBinding.radioButton.setChecked(selected);
-                Toast toast = Toast.makeText(this, "The value is now: "+ variableBinding.switch1.isChecked(),Toast.LENGTH_SHORT);
-                toast.show();
+                Toast.makeText(this, "The value is now: "+ variableBinding.switch1.isChecked(),Toast.LENGTH_SHORT).show();
         });
 
         variableBinding.checkBox.setOnCheckedChangeListener((checkBox, isChecked)-> {
@@ -58,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
         variableBinding.switch1.setOnCheckedChangeListener((switch1, isChecked)-> {
             // Update the mutableLiveData object in the MainViewModel
             model.coffeeSelect.postValue(isChecked);
+        });
+
+        variableBinding.myimagebutton.setOnClickListener(view -> {
+            Toast.makeText(this, "The Width= " + view.getWidth() + "The Height= " + view.getHeight(),Toast.LENGTH_SHORT).show();
         });
 
     }

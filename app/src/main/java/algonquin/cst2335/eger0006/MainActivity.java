@@ -27,13 +27,10 @@ public class MainActivity extends AppCompatActivity {
         EditText myedit = variableBinding.myedittext;
 
         //button click listener
-        myButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //this is run when you click the button
-                String editString = myedit.getText().toString();
-                theText.setText("Your edit text has : "+ editString);
-            }
+        myButton.setOnClickListener( vw -> {
+            //this is run when you click the button
+            String editString = myedit.getText().toString();
+            theText.setText("Your edit text has : "+ editString);
         });
     }
 }

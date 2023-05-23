@@ -9,17 +9,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Button;
 
+import algonquin.cst2335.eger0006.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
+
+    private ActivityMainBinding variableBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        variableBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(variableBinding.getRoot());
 
         //Declaring based on id's
-        TextView theText = findViewById(R.id.textview);
-        Button myButton =findViewById(R.id.mybutton);
-        EditText myedit = findViewById(R.id.myedittext);
+        TextView theText = variableBinding.textview;
+        Button myButton =variableBinding.mybutton;
+        EditText myedit = variableBinding.myedittext;
 
         //button click listener
         myButton.setOnClickListener(new View.OnClickListener() {

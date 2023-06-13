@@ -2,7 +2,9 @@ package algonquin.cst2335.eger0006;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -52,18 +54,34 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private static final String PREFS_NAME = "MyPrefs";
+    private static final String EMAIL_KEY = "EmailKey";
+    private SharedPreferences sharedPreferences;
+    private EditText emailAddress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.w(TAG,"In onCreate() - Loading Widgets");
+        sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        emailAddress = findViewById(R.id.editTextTextEmailAddress);
+
+        // Retrieve the saved email address if available
+        String savedEmail = sharedPreferences.getString(EMAIL_KEY, "");
+        emailAddress.setText(savedEmail);
 
         Button loginButton = findViewById(R.id.LoginButton);
-        EditText emailAddress = findViewById((R.id.editTextTextEmailAddress));
         loginButton.setOnClickListener(clk -> {
+            String email = emailAddress.getText().toString();
+
+            // Save the email address to SharedPreferences
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(EMAIL_KEY, email);
+            editor.apply();
+
             Intent nextPage = new Intent(MainActivity.this, SecondActivity.class);
-            nextPage.putExtra("EmailAddress", emailAddress.getText().toString());
+            nextPage.putExtra("EmailAddress", email);
             startActivity(nextPage);
         });
 

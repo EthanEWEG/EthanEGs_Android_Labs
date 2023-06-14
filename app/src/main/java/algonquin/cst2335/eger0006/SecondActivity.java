@@ -35,7 +35,7 @@ public class SecondActivity extends AppCompatActivity {
     private static final String FILENAMEE = "Picture.png";
 
     private static final String PREFS_NAME = "MyPrefs";
-    private static final String PHONE_KEY = "EmailKey";
+    private static final String PHONE_KEY = "PhoneKey";
     private SharedPreferences sharedPreferences;
     private EditText phoneN;
 
